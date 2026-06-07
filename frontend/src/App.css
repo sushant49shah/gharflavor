@@ -1,0 +1,41 @@
+/* Custom layout and aesthetic helpers configured for GharFlavour theme */
+
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(232, 144, 26, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232, 144, 26, 0.02) 1px, transparent 1px);
+}
+
+.text-gradient-indigo {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-card {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(232, 144, 26, 0.04), transparent 40%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.glow-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 83, 42, 0.25);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.6), 0 0 24px -4px rgba(232, 144, 26, 0.1);
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+}

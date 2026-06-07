@@ -1,0 +1,62 @@
+*middleware
+
+lib req to use redux
+-redux
+-react-redux
+-redux-thunk
+-redux-devtools-extension
+
+Problem and why we need REDUX TOOLKIT
+    -state management can be done by prop passing, but prop drilling occurs when we pass the data from one parent to numbers of children.
+    - to manage that, redux toolkit is introduced
+    - think redux as a centralized data store, from where any component can access data from that centralized data store
+
+One example:
+    one click is triggered:
+    - first a onClick() event is triggered 
+    - action dispatches
+    - store
+    - reducer
+    - logic execute
+    - store -> state updation -> UI updation
+
+** Terms Used in REDUX TOOLKIT
+Action:
+    action is an object which say something has happened
+    or it is an object where we wrap event and additional information inside it
+Slice:
+    slice is simply the features of website written in reducer
+    -slice will track what the initial state is
+Reducer:
+    a function where logic is stored
+    -state updation will happen inside this
+Store:
+    all the data/state are put inside store
+State:
+    -fancy name for data
+
+** Implementing redux in react
+    1. create a store.js in src/redux folder
+    2. import Provider in main.jsx and wrap <App/> inside Provider
+    3. Pass store.js to Provider so that App can use it (store={store})
+    4. create slices 
+    5. add those slices to store.js so that store will know what action to take with that slice
+    
+What is payload?
+
+
+
+Summary
+* Create a Redux store with configureStore
+    - configureStore accepts a reducer function as a named argument
+    - configureStore automatically sets up the store with good default settings
+* Provide the Redux store to the React application components
+    - Put a React-Redux <Provider> component around your <App />
+    - Pass the Redux store as <Provider store={store}>
+* Create a Redux "slice" reducer with createSlice
+    - Call createSlice with a string name, an initial state, and named reducer functions
+    - Reducer functions may "mutate" the state using Immer
+    - Export the generated slice reducer and action creators
+* Use the React-Redux useSelector/useDispatch hooks in React components
+    - Read data from the store with the useSelector hook
+    - Get the dispatch function with the useDispatch hook, and dispatch actions as needed

@@ -1,0 +1,1 @@
+// Checkout interface removed - types inferred from reducer

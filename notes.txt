@@ -1,0 +1,163 @@
+django manage.py runserver --> it starts the server
+django manage.py startapp app_name --> creates the app
+
+if you want to use any app, you have to first let the django know that the app exists
+for that, go to settings and define the app in INSTALLED_APPS as app_name.apps.BaseConfig
+
+
+apps 
+    views.py --> logics
+    models.py --> create databases
+
+views.py
+    function based views --> easier as we can see all the logics within the view
+    class based views --> (search in net)
+
+    so first create a function for routes and 
+    return it as Jsonresponse
+
+    What views does: 
+    1. Receives the request   (GET, POST, PUT, DELETE)
+    2. Does something         (fetch data, save data, check auth)
+    3. Returns a response     (JSON data, error message, success)
+
+urls.py
+    inside the app, create a urls.py file for all your url routing and manage it by views.py
+    
+    To make it work, you also have to tell the django app to consider urls.py of base app by going to urls.py of parent(django) app
+
+
+django-rest-framework
+    decoraters
+
+install axios for api call in react
+
+CORS --> doesn't allow frontend to call api by default
+
+"proxy" : 'http/...../8000 port in package.Json
+
+we have to migrate 
+
+superuser set in terminal
+
+
+
+------------------------------------------------------------------------
+Backend Authentication
+Json Web Token (JWT)
+    -used for authentication 
+
+
+POSTMAN
+    -used for api testing
+    -without using the frontend we can test the api call using this software
+
+-we can use environment variable for resuability (URL='http//1287..../8000)
+
+--pip install djangorestframework-simplejwt
+
+JWT 
+    - in base app, go to url and import djangorestframework-simplejwt module and its integrated urls_pattern from the docs.
+    - after that, you can use JWT with djangorestframework
+    - when you run, it will generate the token which will protect the routes
+    - we can customize the token as well. from docs, simple jwt behaviour. you will get one code where you can paste it in settings.py and change the time or any behaviour 
+
+Customizing Token Claims (search this title in docs)
+in views
+    from rest_framework_simplejwt.serializer import TokenObtainPairSerializer
+    from rest_framework_simplejwt.views import TokenObtainPairView
+    
+    - now we can customize the JWT inside that class 
+
+User Serializer
+    - make serializer.py in base app
+    - what is serializer??
+        ->  a serializer is a tool that converts complex data—like database models and querysets—into native Python datatypes (such as dictionaries and lists)
+    - you should be authorized to get the api data (in POSTMAN)
+    - make fields inside model 
+    - after the get_ in methods, the thing you will right after underscore will be the fieldname (idk if its compulsary or not)
+    - 
+
+Protecting the routes
+    - need to create decoraters 
+    - from rest_framework.decoraters import api_view, permission_classes
+    - from rest_framework.permissions import IsAuthenticated
+    - only admin can see the user routes 
+    - in Headers (POSTMAN) you can put your token in authorization
+
+Register the User
+    - make the Register views
+    - dont save password in raw format, but using hashers
+    - from rest_framework import status
+
+ 
+Login With email
+    - 
+
+Cleanup
+ - watch it while coding
+
+
+
+-------------------------------------------------------------------------------------
+Frontend authentication
+
+Login Reducer
+
+userConstants.js
+    - define all the user slice
+userReducer.js
+    - define the each reducer with it actions
+userActions.js
+    - dispatch all four actions
+    - use axios with POST method to get email and password
+
+Login Page 
+    -make by your own 
+    - check the base/views.py if shows error
+
+User in navbar Page
+    - in userActions, set the userInfo and make change accordingly
+    - -check the local storage as well
+
+Register the User 
+    - make actions for Register
+    - make reducer based on actions for Register
+    - then make the UI with all thier function
+    - 
+
+-------------------------------------------------------------------------------------
+Checkout Process 
+
+Shipping Screen 
+    - make the UI and manage the states
+    - make actions, save_shipping_address and then reducer
+    - dispatch it and also in Shipping jsx file
+
+Checkout Steps
+    - 4 Steps (Login, Shipping, Payment, Place Order)
+    - 
+
+Order Views and URL
+Order_views.py
+    - make an order_views.py in views folder
+    - check if there's order or not: if not status 404 error throw
+    - else, do the 4 things
+    1. Create Order
+        - user, Payment, prices
+    2. Create Shipping address 
+        - order, addresses
+    3. Set order items relation
+    4. Update Stocks
+
+Orders_url.py
+Serializer.py
+    - create serializer as per the views
+    - create respective methods
+
+Place Order
+    - create Constants (Order request, success and fail) then reducers
+    - now implement the respective actions 
+
+Create Order
+if payment section is not done, then using url it should not go to another section (place order)

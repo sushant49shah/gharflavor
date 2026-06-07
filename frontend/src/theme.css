@@ -1,0 +1,11 @@
+
+@theme {
+  --color-primary:     #D4532A;  /* Ember */
+  --color-accent:      #E8901A;  /* Saffron */
+  --color-bg-dark:     #1E1E1E;  /* Charcoal */
+  --color-bg-surface:  #2C2C2C;  /* Ash */
+  --color-bg-light:    #F5F0EB;  /* Parchment */
+  --color-text-base:   #FFFFFF;  /* Pure White */
+  --color-text-muted:  #A89880;  /* Sandstone */
+  --color-border:      #444444;  /* Graphite */
+}
