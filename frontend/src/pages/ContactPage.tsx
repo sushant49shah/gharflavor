@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Mail, Send, Users, HelpCircle } from "lucide-react";
 import axiosInstance from "../app/axios";
 
