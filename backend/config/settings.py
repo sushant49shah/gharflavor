@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from importlib.util import find_spec
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -109,13 +110,10 @@ DATABASES = {
 }
 
 if os.environ.get("DATABASE_URL"):
-    import dj_database_url
-
     DATABASES["default"] = dj_database_url.config(
         conn_max_age=600,
         conn_health_checks=True,
     )
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
