@@ -20,7 +20,7 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axiosInstance.get("products/");
+        const response = await axiosInstance.get("/api/products/");
         setProducts(response.data.results);
         console.log("Dashboard data:", response.data);
       } catch (error) {

@@ -22,7 +22,7 @@ export const fetchOrders = createAsyncThunk(
 
 
 export const fetchOrderById = createAsyncThunk(
-    'orders/fetchById',
+    'api/orders/fetchById',
     async (id: string, {getState, rejectWithValue}) => {
         try {
             const state: any = getState();

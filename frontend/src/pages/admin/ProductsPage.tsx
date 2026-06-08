@@ -127,7 +127,7 @@ const ProductsPage = () => {
     setError(null)
 
     try {
-      const response = await axiosInstance.get<PaginatedResponse>('/products/')
+      const response = await axiosInstance.get<PaginatedResponse>('/api/products/')
       setProducts(response.data.results)
     } catch (err: any) {
       setError(err.response?.data?.detail || err.message || 'Unable to fetch products')
@@ -138,7 +138,7 @@ const ProductsPage = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axiosInstance.get<Category[]>('/products/categories/')
+      const response = await axiosInstance.get<Category[]>('/api/products/categories/')
       setCategories(response.data)
       setForm((prev) => ({
         ...prev,
@@ -191,7 +191,7 @@ const ProductsPage = () => {
 
     try {
       setSaving(true)
-      await axiosInstance.delete(`/products/${id}/`, authConfig())
+      await axiosInstance.delete(`/api/products/${id}/`, authConfig())
       setProducts((prev) => prev.filter((product) => product.id !== id))
       setSuccess('Product deleted successfully.')
 
@@ -225,14 +225,14 @@ const ProductsPage = () => {
 
       if (selectedProduct) {
         const response = await axiosInstance.put<Product>(
-          `/products/${selectedProduct.id}/`,
+          `/api/products/${selectedProduct.id}/`,
           form,
           authConfig(),
         )
         setProducts((prev) => prev.map((product) => (product.id === selectedProduct.id ? response.data : product)))
         setSuccess('Product updated successfully.')
       } else {
-        const response = await axiosInstance.post<Product>('/products/', form, authConfig())
+        const response = await axiosInstance.post<Product>('/api/products/', form, authConfig())
         setProducts((prev) => [response.data, ...prev])
         setSuccess('New product created successfully.')
       }

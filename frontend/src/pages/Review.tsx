@@ -1,15 +1,17 @@
-import axios from 'axios';
 import { useEffect, useState, type FormEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { submitReview, resetReviewState } from '../features/reviewSlice';
 import type { ReviewSubmission } from '../features/reviewSlice';
+import axiosInstance from '../app/axios';
 
 interface ProductOption {
   id: number;
   name: string;
 }
 
-const BASE_URL = 'http://localhost:8000';
+interface PaginatedProducts {
+  results: ProductOption[];
+}
 
 const Review = () => {
   const dispatch = useAppDispatch();
@@ -26,8 +28,8 @@ const Review = () => {
     dispatch(resetReviewState());
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get<ProductOption[]>(`${BASE_URL}/products/`);
-        setProducts(data);
+        const { data } = await axiosInstance.get<PaginatedProducts | ProductOption[]>('/api/products/');
+        setProducts(Array.isArray(data) ? data : data.results ?? []);
       } catch (err: any) {
         setFetchError(err.response?.data?.detail || err.message || 'Unable to load products');
       }

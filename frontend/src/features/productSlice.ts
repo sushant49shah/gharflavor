@@ -43,14 +43,14 @@ const initialState: ProductsState = {
 
 // ─── Async Thunks ─────────────────────────────────────────
 export const fetchProducts = createAsyncThunk(
-  'products/fetchAll',
+  'api/products/fetchAll',
   async (
     { page = 1, category = '', search = '', sort = '' }: FetchProductsParams,
     { rejectWithValue }
   ) => {
     try {
       const query = `page=${page}&category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}&sort=${encodeURIComponent(sort)}`;
-      const { data } = await axios.get(`/products/?${query}`);
+      const { data } = await axios.get(`/api/products/?${query}`);
       return data;
     } catch (error: any) {
       return rejectWithValue(
@@ -61,10 +61,10 @@ export const fetchProducts = createAsyncThunk(
 );
 
 export const fetchSingleProduct = createAsyncThunk(
-  'products/fetchSingle',
+  'api/products/fetchSingle',
   async (id: number, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/products/${id}/`);
+      const { data } = await axios.get(`/api/products/${id}/`);
       return data;
     } catch (error: any) {
       return rejectWithValue(

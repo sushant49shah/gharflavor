@@ -14,6 +14,7 @@ import { useAppSelector, useAppDispatch } from "../hooks";
 import { selectTotalQuantity } from "../features/cart/cartSelectors";
 import { logoutUser } from "../features/user/userSlice";
 import Logo from '../assets/gharflavour.svg'
+import { API_BASE_URL } from "../app/axios";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -280,7 +281,7 @@ const Header = () => {
                         </Dialog.Close>
                         {userInfo.isAdmin && (
                           <a
-                            href="http://localhost:8000/admin/"
+                            href={`${API_BASE_URL}/admin/`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex w-full items-center gap-3 px-3 py-2.5 rounded-md text-sm font-semibold text-text-muted hover:text-white hover:bg-bg-surface transition-colors"

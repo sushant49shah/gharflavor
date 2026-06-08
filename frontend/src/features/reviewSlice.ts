@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axiosInstance from '../app/axios';
 import type { RootState } from '../app/store';
-
-const BASE_URL = 'http://localhost:8000';
 
 export interface ReviewSubmission {
   productId: number;
@@ -35,8 +33,8 @@ export const submitReview = createAsyncThunk(
         },
       };
 
-      const response = await axios.post(
-        `${BASE_URL}/reviews/product/${review.productId}/`,
+      const response = await axiosInstance.post(
+        `/api/reviews/product/${review.productId}/`,
         { rating: review.rating, comment: review.comment },
         config,
       );

@@ -42,7 +42,7 @@ const ReviewsPage = () => {
     setError(null)
 
     try {
-      const response = await axiosInstance.get<Review[]>('/reviews/', authConfig())
+      const response = await axiosInstance.get<Review[]>('/api/reviews/', authConfig())
       setReviews(response.data)
     } catch (err: any) {
       setError(err.response?.data?.detail || err.message || 'Unable to fetch reviews')

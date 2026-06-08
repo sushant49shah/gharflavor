@@ -63,7 +63,7 @@ const CustomersPage = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axiosInstance.get<Category[]>('/products/categories/')
+      const response = await axiosInstance.get<Category[]>('/api/products/categories/')
       setCategories(response.data)
     } catch (err: any) {
       setError(err.response?.data?.detail || err.message || 'Unable to fetch categories')

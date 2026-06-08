@@ -39,7 +39,7 @@ const ContactPage = () => {
     if (!validate()) return;
 
     try {
-      const response = await axiosInstance.post('/common/contact/', {
+      const response = await axiosInstance.post('/api/common/contact/', {
         full_name: name,
         email,
         phone,

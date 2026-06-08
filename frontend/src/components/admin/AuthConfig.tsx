@@ -1,11 +1,21 @@
-import { useAppSelector } from "../../hooks";
+interface StoredUserInfo {
+  token?: string;
+}
 
-const token = useAppSelector((state) => state.user.userInfo?.token);
+const getToken = () => {
+  try {
+    const stored = localStorage.getItem('gharflavour_userInfo');
+    const userInfo = stored ? (JSON.parse(stored) as StoredUserInfo) : null;
+    return userInfo?.token || '';
+  } catch {
+    return '';
+  }
+};
 
 const authConfig = () => ({
     headers: {
       'Content-Type': 'application/json',
-      Authorization: token ? `Bearer ${token}` : '',
+      Authorization: getToken() ? `Bearer ${getToken()}` : '',
     },
   });
 

@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+import axiosInstance from '../../app/axios';
 
 export interface UserInfo {
   id: number;
@@ -64,8 +62,8 @@ export const loginUser = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       };
-      const { data } = await axios.post<UserInfo>(
-        `${BASE_URL}/api/users/login/`,
+      const { data } = await axiosInstance.post<UserInfo>(
+        '/api/users/login/',
         { username: email, password }, // MyTokenObtainPairSerializer uses standard username/password
         config
       );
@@ -91,8 +89,8 @@ export const registerUser = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       };
-      const { data } = await axios.post<UserInfo>(
-        `${BASE_URL}/api/users/register/`,
+      const { data } = await axiosInstance.post<UserInfo>(
+        '/api/users/register/',
         { name, email, password },
         config
       );
@@ -123,8 +121,8 @@ export const getUserDetails = createAsyncThunk(
         },
       };
       
-      const { data } = await axios.get<UserProfileDetails>(
-        `${BASE_URL}/api/users/profile/`,
+      const { data } = await axiosInstance.get<UserProfileDetails>(
+        '/api/users/profile/',
         config
       );
       return data;
@@ -155,8 +153,8 @@ export const updateUserProfile = createAsyncThunk(
         },
       };
       
-      const { data } = await axios.put<UserInfo>(
-        `${BASE_URL}/api/users/profile/update/`,
+      const { data } = await axiosInstance.put<UserInfo>(
+        '/api/users/profile/update/',
         userData,
         config
       );

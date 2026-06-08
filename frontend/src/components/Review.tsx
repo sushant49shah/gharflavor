@@ -3,6 +3,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { submitReview, resetReviewState } from '../features/reviewSlice';
 import type { ReviewSubmission } from '../features/reviewSlice';
+import axiosInstance from '../app/axios';
 
 interface ProductOption {
   id: number;
@@ -15,8 +16,6 @@ interface PaginatedProducts {
   previous: string | null;
   results: ProductOption[];
 }
-
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 
 const Review = () => {
   const dispatch = useAppDispatch();
@@ -40,7 +39,7 @@ const Review = () => {
     const fetchProducts = async () => {
       setFetchingProducts(true);
       try {
-        const { data } = await axios.get<PaginatedProducts>(`${BASE_URL}/products/`);
+        const { data } = await axiosInstance.get<PaginatedProducts | ProductOption[]>('/api/products/');
         // data.results is the array — data itself is the paginated object
         const results = Array.isArray(data) ? data : data.results ?? [];
         setProducts(results);
