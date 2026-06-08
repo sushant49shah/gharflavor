@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { loginUser } from '../features/user/userSlice';
 import { Lock, Mail, AlertCircle, Loader } from 'lucide-react';
-import Icon from '../assets/icon.svg'
+import Icon from '../assets/icon.svg';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -43,10 +43,13 @@ export const LoginPage = () => {
         
         {/* Brand/Header */}
         <div className="text-center">
-          <span className="text-2xl font-black tracking-wide text-white">
-            <img src={Icon} alt="Ghar-Flavour Logo" className="mx-auto h-12 w-auto mb-2" />
-            Ghar-<span className="text-accent">Flavour</span>
-          </span>
+          <div className="text-2xl font-black tracking-wide text-white">
+            <div className="flex items-center justify-center gap-2">
+              <img src={Icon} alt="Ghar-Flavour Logo" className="h-12 w-auto" />
+              <span className="text-3xl">Ghar</span>
+              <span className="text-3xl text-accent">Flavor</span>
+            </div>
+          </div>
           <h2 className="mt-6 text-2xl font-bold tracking-tight text-white">
             Welcome back
           </h2>

@@ -25,6 +25,11 @@ def get_products(request):
         search = request.query_params.get('search')
         if search:
             products = products.filter(name__icontains=search)
+
+        # filtering by badge
+        badge = request.query_params.get('badge')
+        if badge:
+            products = products.filter(badge=badge)
             
         # pagination
         paginator = ProductPagination()

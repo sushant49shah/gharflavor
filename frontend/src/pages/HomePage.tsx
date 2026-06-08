@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, ArrowDown } from "lucide-react";
+import { ArrowUpRight, ArrowDown } from "lucide-react";
 import HeroSection from "../components/homepage/HeroSection";
-import ProductCard from "../components/ProductCard";
+import FeaturedProduct from "../components/homepage/FeaturedProduct";
 
 // data imported from products.ts
-import { FEATURED_PRODUCTS, VALUE_PROPOSITIONS } from "../data/products";
+import { VALUE_PROPOSITIONS } from "../data/products";
 import { CATEGORIES } from "../data/products";
 import { useEffect, useState } from "react";
 
@@ -57,48 +57,7 @@ const HomePage = () => {
       </section>
 
       {/* 3. Featured Products */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-          <div className="text-center md:text-left space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-              Featured Products
-            </h2>
-            <p className="text-sm text-text-muted">
-              Discover our highest-rated items picked by professionals globally.
-            </p>
-          </div>
-          <Link
-            to="/products"
-            className="inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-primary transition-colors group"
-          >
-            View all products
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {FEATURED_PRODUCTS.map((prod) => (
-            <ProductCard
-              key={prod.id}
-              id={prod.id}
-              name={prod.name}
-              price={prod.price}
-              imageUrl={prod.imageUrl}
-              rating={prod.rating}
-              reviews={prod.reviews}
-              category={prod.category}
-              stock={prod.stock}
-              badge={
-                prod.badge as
-                  | "Best Seller"
-                  | "New"
-                  | "Limited Stock"
-                  | undefined
-              }
-            />
-          ))}
-        </div>
-      </section>
+      <FeaturedProduct />
 
       {/* 4. Value Propositions */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8">

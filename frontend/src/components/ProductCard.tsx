@@ -10,7 +10,7 @@ interface ProductCardProps {
   reviews: number;
   category: string;
   stock: number;
-  badge?: "Best Seller" | "New" | "Limited Stock";
+  badge?: string | null;
 }
 
 const ProductCard = ({
@@ -38,7 +38,7 @@ const ProductCard = ({
           alt={name}
           className="h-full w-full object-contain"
         />
-        {badge && (
+        {badge && badge !== "none" && (
           <span
             className={`absolute top-2 left-2 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
               badge === "Best Seller"
